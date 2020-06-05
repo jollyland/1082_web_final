@@ -15,7 +15,6 @@ include("PDOInc.php")
 	if(isset($_SESSION['id'])){
 		echo "<br>";
 		echo "<a href=\"logout.php\" class=\"button\">登出</a>";
-		echo "<a href=\"profile.php\" class=\"button\">修改資料</a>";
 		echo "<p class=\"log\" >登入身分: ";
         echo '<a class="board" href="profile.php?id='.$_SESSION['id'].'">'.$_SESSION['id'].'</a></p>';
 
@@ -28,8 +27,14 @@ include("PDOInc.php")
 	?>
 
 	</div>
-	<div class="board_list">
-	</div>
+	<table width="3000" height="800">
+	<font size="6">寶可夢遺失物招領處</font><br>
+
+		<a href="group_battle.php">團體戰板</a>
+		<a href="board_trade_give.php">寶可夢贈送板</a>
+		<a href="board_trade_seek.php">寶可夢徵求板</a>
+
+	</table>
 </body>
 
 
