@@ -80,7 +80,7 @@ if( isset($_POST['id']) && isset($_POST['pwd']) && isset($_POST['nickname']) && 
 			
 			echo "
 			<script>
-			setTimeout(function(){window.location.href='signup.php';},2000);		
+			setTimeout(function(){window.location.href='login.php';},2000);		
 			</script>";
 			
 		}
