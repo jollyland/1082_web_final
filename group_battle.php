@@ -21,17 +21,22 @@ if(isset($_POST['title']) && isset($_POST['rarity']) && isset($_POST['time']) &&
  
 <html><head></head>
 <body bgcolor="#ccccff">
+
+<?php
+    if(isset($_SESSION['id'])){
+        echo '<form action="group_battle.php" method="post">';
+        echo '-發文-<br>';
+        echo '標題：<input name="title"><br>';
+        echo '稀有度：<input name="rarity" placeholder="請輸入1~5"><br>';
+        echo '時間：<input type="datetime-local" name="time"><br>';
+        echo '密碼：<input name="password"><br>';
+        echo '<input type="submit"><br>';
+        echo '</form><hr>';
+    }
+?>
  
-<form action="group_battle.php" method="post">
--發文-<br>
-標題：<input name="title"><br>
-稀有度：<input name="rarity"><br>
-時間：<input type="datetime-local" name="time"><br>
-密碼：<input name="password"><br>
-<input type="submit"><br>
-</form>
- 
-<hr>
+
+<font size="4">文章列表</font><br><br><br>
  
 <table border>
     <tr>
