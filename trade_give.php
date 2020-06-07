@@ -48,7 +48,7 @@ if(isset($_POST['title']) && isset($_POST['pokemon']) && isset($_POST['time'])){
         $sql = "SELECT * from board_trade_give ORDER BY id";
         $sth = $dbh->query($sql);
         while($row = $sth->fetch(PDO::FETCH_ASSOC)){
-            echo '<td><a href="trade_give_re.php?id='.$row['id'].'">'.htmlspecialchars($row['title']).'</a></td>';
+            echo '<td><a href="trade_give_res.php?id='.$row['id'].'">'.htmlspecialchars($row['title']).'</a></td>';
             echo "<td>".$row['poster_id']."(".$row['nickname'].")</td>";
             echo "<td>".$row['pokemon']."</td>";
             echo "<td>".$row['time']."</td><tr>";
