@@ -24,7 +24,7 @@ if(isset($_POST['title']) && isset($_POST['rarity']) && isset($_POST['time']) &&
 
 <?php
     if(isset($_SESSION['id'])){
-        echo '歡迎來到團體戰版，<a class="board" href="profile.php?id='.$_SESSION['id'].'">'.$_SESSION['id'].'('.$_SESSION['nickname'].')</a></p>';
+        echo '歡迎來到團體戰板，<a class="board" href="profile.php?id='.$_SESSION['id'].'">'.$_SESSION['id'].'('.$_SESSION['nickname'].')</a></p>';
         echo '<form action="group_battle.php" method="post">';
         echo '-發文-<br>';
         echo '標題：<input name="title"><br>';
