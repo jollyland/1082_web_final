@@ -55,9 +55,15 @@ if(isset($_POST['title']) && isset($_POST['rarity']) && isset($_POST['time']) &&
             echo "<td>".$row['poster_id']."(".$row['nickname'].")</td>";
             echo "<td>".$row['rarity']."</td>";
             echo "<td>".$row['time']."</td>";
-            echo "<td>".$row['password']."</td><tr>";
+            echo "<td>".$row['password']."</td><td>";
+            if($row['poster_id']==$_SESSION['id']){
+                echo '<a href="group_battle_del.php?id='.$row['id'].'">刪除</a>';
+            }
+            echo "</td><tr>";
         }
     ?>
 </table>
+
+<a href="index.php">回首頁</a>
  
 </body></html>

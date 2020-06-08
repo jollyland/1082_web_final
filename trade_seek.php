@@ -51,9 +51,15 @@ if(isset($_POST['title']) && isset($_POST['pokemon']) && isset($_POST['offer']) 
             echo '<td><a href="trade_seek_res.php?id='.$row['id'].'">'.htmlspecialchars($row['title']).'</a></td>';
             echo "<td>".$row['poster_id']."(".$row['nickname'].")</td>";
             echo "<td>".$row['pokemon']."</td>";
-            echo "<td>".$row['offer']."</td><tr>";
+            echo "<td>".$row['offer']."</td><td>";
+            if($row['poster_id']==$_SESSION['id']){
+                echo '<a href="trade_seek_del.php?id='.$row['id'].'">刪除</a>';
+            }
+            echo "</td><tr>";
         }
     ?>
 </table>
+
+<a href="index.php">回首頁</a>
  
 </body></html>
