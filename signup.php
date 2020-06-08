@@ -22,9 +22,9 @@ include("PDOInc.php");
     遊戲ID：<input type="text" name="nickname"  required><br>
     朋友編號：<input type="text" name="fcode" placeholder="請輸入SW後12位數字" maxlength="12" pattern="[0-9]{12}"  required><br>
     是否公開朋友編號：
-    <input type="radio" name="public_code" value="yes">
+    <input type="radio" name="newshow" value="yes">
     <label for="yes">公開</label>
-    <input type="radio" name="public_code" value="no">
+    <input type="radio" name="newshow" value="no">
     <label for="no">不公開</label><br>
 
     <input type="submit" class="button" value="註冊">

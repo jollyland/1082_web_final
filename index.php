@@ -31,8 +31,8 @@ include("PDOInc.php")
 	<font size="6">寶可夢遺失物招領處</font><br>
 
 		<a href="group_battle.php">團體戰板</a>
-		<a href="board_trade_give.php">寶可夢贈送板</a>
-		<a href="board_trade_seek.php">寶可夢徵求板</a>
+		<a href="trade_give.php">寶可夢贈送板</a>
+		<a href="trade_seek.php">寶可夢徵求板</a>
 
 	</table>
 </body>
