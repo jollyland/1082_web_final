@@ -33,68 +33,19 @@ if (!isset($_SESSION['id']) || $_GET['id'] != $_SESSION['id']){
         <input type="radio" name="newshow" value="yes">
         <label for="yes">公開</label>
         <input type="radio" name="newshow" value="no">
-        <label for="no">不公開</label><br>
+        <label for="no">不公開</label>
         <input type="submit" value="確認修改" name="change_show">
+    </form>
+
+    <form name = "change_pwd" method="post" action="update_pwd.php ">
+    <p>密碼：<input type="password" name="pw" required >(必填) <br></p>
+    <p>變更密碼：<input type="password" name="newpwd" > </p>
+    <p>確認變更密碼：<input type="password" name="confirmpwd" ></p>
+    <input type="submit" name="button" value="確認修改" class="button">
     </form>
 <?php
 
 /*
-if(isset($_SESSION['id']) && $_GET['id'] == $_SESSION['id']){
-	$id = $_SESSION['id'];
-
-	$sql = "SELECT * FROM user_data WHERE id = '$id'";
-	$st = $dbh->query($sql);
-	$row = $st->fetch(PDO::FETCH_ASSOC);
-	$pwd = $row['password'];
-
-	echo "<form name = \"profile\" method=\"post\" action=\"user_data.php \">";
-	echo "<p>密碼：<input type=\"password\" name=\"pw\" value=\"\" required/>(必填) <br></p>";
-    echo "<p>變更密碼：<input type=\"password\" name=\"newpwd\" value=\"\" /> </p>";
-    echo "<p>確認變更密碼：<input type=\"password\" name=\"confirmpwd\" value=\"\" /></p>";
-    echo "<input type=\"submit\" name=\"button\" value=\"確認修改\" class=\"button\">";
-    echo "</form>";
-
-
-    if(isset($_POST['pw'])){
-    	if( md5($_POST['pw']) != $pwd ){
-    		echo "密碼錯誤!";
-
-    	}
-    	else{
-    		if( !isset($_POST['newpwd']) && !isset($_POST['confirmpwd'])){
-    			echo "請輸入完整資料";
-    		}
-    		else if ( ($_POST['newpwd'] == null) || ($_POST['confirmpwd'] == null)){
-    			echo "請輸入完整資料";
-    		}
-    		else{
-    			if( $_POST['newpwd'] == $_POST['confirmpwd'])
-    			{
-    				$new = md5($_POST['newpwd']);
-    				$up = $dbh->prepare("UPDATE user SET password = ? WHERE id = '$id' ");
-    				$up->execute( array($new) );
-
-    				echo "修改成功，請重新登入";
-    				echo "
-						<script>
-						setTimeout(function(){window.location.href='login.php';},2000);		
-						</script>";
-    			}
-    			else{
-    				echo "新密碼不相符";
-    			}
-    		}
-    	}
-
-    }
-}
-else{
-	echo "請先登入";
-	echo "
-		<script>
-		setTimeout(function(){window.location.href='login.php';},2000);		
-		</script>";
-}
 
 
 echo "<form method=\"post\" action=\"update_profile.php \" enctype = \"multipart/form-data \" >";
@@ -104,32 +55,26 @@ echo "</form>";
 */
 
 /*
-$whitelist = array('jpg', 'png');
-$filePath = "./uploadFile/";
-$resultStr = '';
 
-
-if( isset($_FILES["pic"]["name"]) && $_FILES["pic"]["name"]!=NULL){
-    $tmp = explode(".", $_FILES["pic"]["name"]);
-    $extension = strtolower(end($tmp));
-    if( in_array($extension, $whitelist) && $_FILES["pic"]["size"] <= 1024 * 1024){
-        $resultStr = "Submit file OK.";
-        move_uploaded_file($_FILES["pic"]["tmp_name"], $filePath.$_FILES["pic"]["name"]);
-    }
-    else {
-        $resultStr = "Submit file GG!!";
-    }
-
-}
 */
 
 
 ?>
-<form action="update_profile.php" method="post" enctype="multipart/form-data">
+<form action="upload_pic.php" method="post" enctype="multipart/form-data">
     <label for="file">選擇檔案：</label>
     <input type="file" name="pic"><br>
-    <input type="submit" name="submit" value="上傳">
-    <?php //echo $resultStr;?>
+    <input type="hidden" name="pic_type" value="0">
+    <input type="submit" name="submit" value="上傳聯盟卡檔案">
+</form>
+
+<br>
+
+
+<form action="upload_pic.php" method="post" enctype="multipart/form-data">
+    <label for="file">選擇檔案：</label>
+    <input type="file" name="pic"><br>
+    <input type="hidden" name="pic_type" value="1">
+    <input type="submit" name="submit" value="上傳隊伍圖片">
 </form>
 
 </body>

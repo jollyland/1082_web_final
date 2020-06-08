@@ -42,6 +42,28 @@ if(isset($_POST['password']) && isset($_POST['want']) && isset($_POST['time']) &
 
 <html><head></head>
 
+<div class="header">
+
+    <?php
+    if(isset($_SESSION['id'])){
+        echo "<br>";
+        echo "<a href=\"logout.php\" class=\"button\">登出</a>";
+        echo "<p class=\"log\" >登入身分: ";
+        echo '<a class="board" href="profile.php?id='.$_SESSION['id'].'">'.$_SESSION['id'].'</a></p>';
+
+    }
+    else{
+        echo "<br>";
+        echo "<a href=\"login.php\" class=\"button\">登入</a>";
+        echo "<a href=\"signup.php\" class=\"button\">沒有帳號，註冊</a>";
+    }
+    ?>
+
+<a href="index.php">回首頁</a>
+<a href="trade_seek.php">回到徵求板</a>
+
+</div>
+
 <?php
     if(isset($_SESSION['id'])){
         echo '<form action="trade_seek_res.php?id='.(int)$_GET['id'].'" method="post">';

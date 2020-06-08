@@ -12,6 +12,7 @@ if( isset($_SESSION['id']) && isset($_POST['newname']) ){
     $row = $st->fetch(PDO::FETCH_ASSOC);
 
     $new = $_POST['newname'];
+    $_SESSION['nickname'] = $new; 
     $up = $dbh->prepare("UPDATE user_data SET nickname = ? WHERE id = '$id' ");
     $up->execute( array($new) );
     echo "
