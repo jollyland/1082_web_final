@@ -12,13 +12,39 @@ include("PDOInc.php")
 <body>
 <?php
     echo '<a href="index.php">回到首頁</a></p>';
-    echo '<a class="board" href="update_profile.php?id='.$_SESSION['id'].'">修改資料</a></p>';
+    echo '<a class="board" href="update_profile.php?id='.$_SESSION['id'].'">編輯資料</a></p>';
     
     $id = $_SESSION['id'];
-    $sql = 'SELECT * FROM user_data' ;
+    //$sql = 'SELECT * FROM user_data' ;
     //echo $_SESSION['id'];
-
 ?>
+<div class="profile_pic">
+    <div class="profile_card">
+    <h3>公開的聯盟卡</h3>
+    <?php
+    $id = $_SESSION['id'];
+    $sql = "SELECT * FROM pic_index WHERE owner = '$id' AND type = 0 ";
+    $sth = $dbh->query($sql);
+    if ($row = $sth->fetch(PDO::FETCH_ASSOC)){
+        echo "<img src='./uploadFile/".$row['server_path']."'>" ;
+        echo "<p>聯盟卡密碼：".$row['code']."</p>" ;
+    }
+    ?>    
+    </div>
+    <div class="profile_team">
+    <h3>公開的租用隊伍</h3>
+    <?php
+    $id = $_SESSION['id'];
+    $sql = "SELECT * FROM pic_index WHERE owner = '$id' AND type = 1 ";
+    $sth = $dbh->query($sql);
+    while ($row = $sth->fetch(PDO::FETCH_ASSOC)){
+        echo "<img src='./uploadFile/".$row['server_path']."'>" ;
+        echo "<p>租用密碼：".$row['code']."</p>" ;
+    }
+    ?>    
+    </div>
+</div>
+
 <div class="profile_list">
     <div class="battle_list">
         <h3>發表過的團體戰</h3>

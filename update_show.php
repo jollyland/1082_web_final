@@ -17,10 +17,8 @@ if( isset($_SESSION['id']) && isset($_POST['newshow']) ){
     	$new = 0;
     $up = $dbh->prepare("UPDATE user_data SET fc_show = ? WHERE id = '$id' ");
     $up->execute( array($new) );
-    echo "
-        <script>
-        setTimeout(function(){window.location.href='index.php';},1500);     
-        </script>";
+    echo "<script>location.href='".$_SERVER["HTTP_REFERER"]."';</script>"; 
+    
 
 }
 else{

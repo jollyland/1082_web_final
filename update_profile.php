@@ -60,10 +60,13 @@ echo "</form>";
 
 
 ?>
+<br>
+
 <form action="upload_pic.php" method="post" enctype="multipart/form-data">
     <label for="file">選擇檔案：</label>
     <input type="file" name="pic"><br>
     <input type="hidden" name="pic_type" value="0">
+    <p>公開聯盟卡密碼：<input type="text" name="card_code" maxlength="14"></p>
     <input type="submit" name="submit" value="上傳聯盟卡檔案">
 </form>
 
@@ -74,6 +77,7 @@ echo "</form>";
     <label for="file">選擇檔案：</label>
     <input type="file" name="pic"><br>
     <input type="hidden" name="pic_type" value="1">
+    <p>公開隊伍密碼：<input type="text" name="team_code" maxlength="14"></p>
     <input type="submit" name="submit" value="上傳隊伍圖片">
 </form>
 
