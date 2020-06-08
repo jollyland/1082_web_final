@@ -2,7 +2,7 @@
 session_start();
 include("PDOInc.php");
 
-if(isset($_POST['title']) && isset($_POST['rarity']) && isset($_POST['time']) && isset($_POST['password'])){
+if(isset($_POST['title']) && isset($_POST['rarity']) && isset($_POST['time']) && isset($_POST['password']) && $_POST['title']!=null && $_POST['rarity']!=null && $_POST['time']!=null && $_POST['password']!=null){
         $sth = $dbh->prepare(
             'INSERT INTO board_group_battle (title, poster_id, nickname, rarity, time, password) VALUES (?, ?, ?, ?, ?, ?)'
         );

@@ -2,7 +2,7 @@
 session_start();
 include("PDOInc.php");
 
-if(isset($_POST['title']) && isset($_POST['pokemon']) && isset($_POST['offer'])){
+if(isset($_POST['title']) && isset($_POST['pokemon']) && isset($_POST['offer']) && $_POST['title']!=null && $_POST['pokemon']!=null && $_POST['offer']!=null){
         $sth = $dbh->prepare(
             'INSERT INTO board_trade_seek (title, poster_id, nickname, pokemon, offer) VALUES (?, ?, ?, ?, ?)'
         );
