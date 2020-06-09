@@ -19,33 +19,55 @@ if(isset($_POST['title']) && isset($_POST['rarity']) && isset($_POST['time']) &&
 
 ?>
  
-<html><head></head>
-<body bgcolor="#ccccff">
+<html>
+<head>
+     <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<div class="header">
+    <?php
+    echo '<a class="header_button" href="index.php">回到首頁</a>';
 
+    if(isset($_SESSION['id'])){
+        echo "<a href=\"logout.php\" class=\"header_button\">登出</a>";
+        echo '<a class="header_button" href="profile.php?id='.$_SESSION['id'].'">'.$_SESSION['id'].'</a></p>';
+
+    }
+    else{
+        echo "<br>";
+        echo "<a href=\"login.php\" class=\"header_button\">登入</a>";
+        echo "<a href=\"signup.php\" class=\"header_button\">沒有帳號，註冊</a>";
+    }
+
+    ?>
+</div>
+
+<div class="gp_body">
+<div class="article_form">
 <?php
     if(isset($_SESSION['id'])){
-        echo '歡迎來到團體戰板，<a class="board" href="profile.php?id='.$_SESSION['id'].'">'.$_SESSION['id'].'('.$_SESSION['nickname'].')</a></p>';
         echo '<form action="group_battle.php" method="post">';
-        echo '-發文-<br>';
-        echo '標題：<input name="title"><br>';
-        echo '稀有度：<input name="rarity" placeholder="請輸入1~5"><br>';
+        echo '<h4>-發文-</h4>';
+        echo '標題：<input type="text" name="title"><br>';
+        echo '稀有度：<input type="text" name="rarity" placeholder="請輸入1~5"><br>';
         echo '時間：<input type="datetime-local" name="time"><br>';
-        echo '密碼：<input name="password"><br>';
+        echo '密碼：<input type="text" name="password"><br>';
         echo '<input type="submit"><br>';
-        echo '</form><hr>';
+        echo '</form>';
     }
 ?>
- 
+ </div>
+<br>
 
-<font size="4">文章列表</font><br><br><br>
+<h4>文章列表</h4>
  
-<table border>
+<table >
     <tr>
-        <th>標    題</th>
-        <th>發 文 者</th>
-        <th>稀 有 度</th>
-        <th>時    間</th>
-        <th>密    碼</th>
+        <th>標題</th>
+        <th>發文者</th>
+        <th>稀有度</th>
+        <th>時間</th>
+        <th>密碼</th>
     </tr>
     <?php
         $sql = "SELECT * from board_group_battle ORDER BY time DESC";
@@ -63,7 +85,5 @@ if(isset($_POST['title']) && isset($_POST['rarity']) && isset($_POST['time']) &&
         }
     ?>
 </table>
-
-<a href="index.php">回首頁</a>
- 
+</div>
 </body></html>

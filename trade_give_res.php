@@ -24,51 +24,60 @@ if(isset($_POST['password']) && ($_POST['password'])!=null){
         $userid = htmlspecialchars($row['r_id']);
         $pwd = $row['password'];
 
-        echo "回應者：".$name."(".$userid.")<br>";
+        echo "<tr>";
+        echo "<td>".$name."(".$userid.")</td>";
 
         if($row['p_id']==$_SESSION['id']){
-            echo "密碼：".$pwd."<br>";
+            echo "<td>".$pwd."</td>";
         }
-
+        else{
+            echo "<td>僅樓主可見</td>";            
+        }
+        echo "</tr>";
     } 
 ?>
 
-<html><head></head>
+<html>
+<head>
+     <link rel="stylesheet" type="text/css" href="style.css">
+</head>
 
 <div class="header">
-
     <?php
+    echo '<a class="header_button" href="index.php">回到首頁</a>';
+
     if(isset($_SESSION['id'])){
-        echo "<br>";
-        echo "<a href=\"logout.php\" class=\"button\">登出</a>";
-        echo "<p class=\"log\" >登入身分: ";
-        echo '<a class="board" href="profile.php?id='.$_SESSION['id'].'">'.$_SESSION['id'].'</a></p>';
+        echo "<a href=\"logout.php\" class=\"header_button\">登出</a>";
+        echo '<a class="header_button" href="profile.php?id='.$_SESSION['id'].'">'.$_SESSION['id'].'</a></p>';
 
     }
     else{
         echo "<br>";
-        echo "<a href=\"login.php\" class=\"button\">登入</a>";
-        echo "<a href=\"signup.php\" class=\"button\">沒有帳號，註冊</a>";
+        echo "<a href=\"login.php\" class=\"header_button\">登入</a>";
+        echo "<a href=\"signup.php\" class=\"header_button\">沒有帳號，註冊</a>";
     }
+
     ?>
-
-<a href="index.php">回首頁</a>
-<a href="trade_seek.php">回到贈送板</a>
-
 </div>
-
-
+<div class="rs_body">
+    <div class="article_form">
 <?php
     if(isset($_SESSION['id'])){
         echo '<form action="trade_give_res.php?id='.(int)$_GET['id'].'" method="post">';
-        echo '-回應-<br>';
-        echo '輸入密碼：<input name="password"><br>';
+        echo '<h4>-回應-</h4>';
+        echo '輸入密碼：<input type="text" name="password"><br>';
         echo '<input type="submit"><br>';
-        echo '</form><hr>';
+        echo '</form>';
     }
 ?>
+</div>
 
-回應(由早至晚排列)：<br>
+<h4>回應列表</h4>
+<table>
+    <tr>
+        <th>回應者</th>
+        <th>密碼</th>
+    </tr>
 
 <?php
     if(isset($_GET['id'])){
@@ -83,5 +92,5 @@ if(isset($_POST['password']) && ($_POST['password'])!=null){
         }
     }
 ?>
-
+</div>
 </body></html>
