@@ -8,19 +8,19 @@ include("PDOInc.php");
 <head>
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	 <link rel="stylesheet" type="text/css" href="style.css">
 
 </head>
 
 <body>
-<div class="login_form">
+<div class="article_form">
 <form action="login.php" method="post" name="form">
     帳號：<input type="text" name="id"><br>
     密碼：<input type="password" name="pwd"><br>
     <input type="submit" name="logbutton" class="button" value="登入" >
 </form>
+<input type="submit" value="沒有帳號，註冊" onclick="javascript:location.href='signup.php' ">
 
-<input class="button" type="button" value="沒有帳號，註冊" onclick="javascript:location.href='signup.php' ">
-<br>
 </div>
 
 <?php

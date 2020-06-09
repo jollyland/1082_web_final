@@ -9,7 +9,7 @@ include("PDOInc.php")
 	 <link rel="stylesheet" type="text/css" href="style.css">
 	 <title>寶可夢遺失物招領處</title>
 </head>
-<body>
+<body class = "indexbody">
 
 	<div class="header">
 	<?php
@@ -19,7 +19,6 @@ include("PDOInc.php")
 
 	}
 	else{
-		echo "<br>";
 		echo "<a href=\"login.php\" class=\"header_button\">登入</a>";
 		echo "<a href=\"signup.php\" class=\"header_button\">沒有帳號，註冊</a>";
 	}
@@ -27,18 +26,11 @@ include("PDOInc.php")
 
 	</div>
 	
-	<div class="index_banner">
-		<image src = "./image/banner.jpg" width = 100%>
-	</div>
-
-	<div class ="board_list">
-	<table width="3000" height="800">
-
+	
 		<a class="sel_board" href="group_battle.php">團體戰板</a>
 		<a class="sel_board" href="trade_give.php">寶可夢贈送板</a>
 		<a class="sel_board" href="trade_seek.php">寶可夢徵求板</a>
 
-	</table>
 </div>
 </body>
 

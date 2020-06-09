@@ -14,7 +14,7 @@ include("PDOInc.php");
 </head>
 
 <body>
-<div class="signup">
+<div class="article_form">
 
 <form action="signup.php" method="post" name="form">
     帳號：<input type="text" name="id" maxlength="20" pattern=".{6,20}" required><br>
@@ -29,7 +29,7 @@ include("PDOInc.php");
 
     <input type="submit" class="button" value="註冊">
 </form>
-<input type="button" class="button" value = "已經有帳號，登入" onclick="javascript:location.href='login.php' ">
+<input type="submit" value = "已經有帳號，登入" onclick="javascript:location.href='login.php' ">
 </div>
 
 <?php

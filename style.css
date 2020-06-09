@@ -5,6 +5,13 @@ body{
 	font-family:  "微軟正黑體";
 	text-decoration: none;
 }
+.indexbody{
+	background-image: url('./image/banner.jpg');
+	height: 100%;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 100% 100%;
+}
 h4{
 }
 .header{
@@ -22,7 +29,7 @@ h4{
 	float: right;
 	border-radius: 10px;
 	padding :  10px;
-	width: 80px;
+	width: 120px;
 	text-align: center;
 	margin: 5px 10px;
 	font-size: 12px;
@@ -38,27 +45,27 @@ h4{
 	height: 60%;
 }
 
-.board_list{
-	width : 100%;
-	display: inline-block;
-	left: 50%;
-}
+
 
 .sel_board{
-	background-color: rgb(226,100,26) ; 
-	display: inline;
+	background-color: rgba(226,100,26,0.9) ; 
+	display: inline-block;
 	border-radius: 10px;
-	padding :  80px;
-	width: 230px;
+	padding :  60px;
+	width: 200px;
 	text-align: center;
 	margin: 5px 10px;
 	font-size: 26px;
-
-	position:relative;
 	text-decoration: none;
 	color: white;
+	float: right;
+	position: relative;
+  top: 270px;
 }
+.sel_board ::hover{
+	background-color: rgba(226,100,26,1) ; 
 
+}
 
 table{
   border-collapse: collapse;
