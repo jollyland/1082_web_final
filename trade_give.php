@@ -74,11 +74,13 @@ if(isset($_POST['title']) && isset($_POST['pokemon']) && isset($_POST['time']) &
             echo '<td><a href="profile.php?id='.$row['id'].'">'.$row['nickname'].'</a></td>';
 
             echo "<td>".$row['pokemon']."</td>";
-            echo "<td>".$row['time']."</td><td>";
+            echo "<td>".$row['time']."</td>";
+            if(isset($_SESSION['id'])){
             if($row['poster_id']==$_SESSION['id']){
-                echo '<a href="trade_give_del.php?id='.$row['id'].'">刪除</a>';
+                echo '<td><a href="trade_give_del.php?id='.$row['id'].'">刪除</a></td>';
             }
-            echo "</td><tr>";
+            }
+            echo "<tr>";
         }
     ?>
 </table>

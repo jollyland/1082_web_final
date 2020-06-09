@@ -77,11 +77,13 @@ if(isset($_POST['title']) && isset($_POST['rarity']) && isset($_POST['time']) &&
             echo '<td><a href="profile.php?id='.$row['poster_id'].'">'.$row['nickname'].'</a></td>';
             echo "<td>".$row['rarity']."</td>";
             echo "<td>".$row['time']."</td>";
-            echo "<td>".$row['password']."</td><td>";
+            echo "<td>".$row['password']."</td>";
+            if(isset($_SESSION['id'])){
             if($row['poster_id']==$_SESSION['id']){
-                echo '<a href="group_battle_del.php?id='.$row['id'].'">刪除</a>';
+                echo '<td><a href="group_battle_del.php?id='.$row['id'].'">刪除</a></td>';
             }
-            echo "</td><tr>";
+            }
+            echo "<tr>";
         }
     ?>
 </table>

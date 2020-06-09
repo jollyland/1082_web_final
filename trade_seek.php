@@ -71,11 +71,13 @@ if(isset($_POST['title']) && isset($_POST['pokemon']) && isset($_POST['offer']) 
             echo '<td><a href="trade_seek_res.php?id='.$row['id'].'">'.htmlspecialchars($row['title']).'</a></td>';
             echo '<td><a href="profile.php?id='.$row['poster_id'].'">'.$row['nickname'].'</a></td>';
             echo "<td>".$row['pokemon']."</td>";
-            echo "<td>".$row['offer']."</td><td>";
+            echo "<td>".$row['offer']."</td>";
+            if(isset($_SESSION['id'])){
             if($row['poster_id']==$_SESSION['id']){
-                echo '<a href="trade_seek_del.php?id='.$row['id'].'">刪除</a>';
+                echo '<td><a href="trade_seek_del.php?id='.$row['id'].'">刪除</a></td>';
             }
-            echo "</td><tr>";
+            }
+            echo "<tr>";
         }
     ?>
 </table>
