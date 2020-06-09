@@ -29,7 +29,8 @@ if(isset($_POST['password']) && isset($_POST['want']) && isset($_POST['time']) &
         $pwd = $row['password'];
 
         echo "<tr>";
-        echo "<td>".$name."(".$userid.")</td>";
+        echo '<td><a href="profile.php?id='.$userid.'">'.$name.'</a></td>';
+
         echo "<td>".$want."</td>";
 
         if($row['p_id']==$_SESSION['id']){
@@ -44,7 +45,7 @@ if(isset($_POST['password']) && isset($_POST['want']) && isset($_POST['time']) &
         echo "</tr>";
         }
 
-    } 
+     
 ?>
 
 <html>

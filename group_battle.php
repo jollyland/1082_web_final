@@ -74,7 +74,7 @@ if(isset($_POST['title']) && isset($_POST['rarity']) && isset($_POST['time']) &&
         $sth = $dbh->query($sql);
         while($row = $sth->fetch(PDO::FETCH_ASSOC)){
             echo "<tr><td>".$row['title']."</td>";
-            echo "<td>".$row['poster_id']."(".$row['nickname'].")</td>";
+            echo '<td><a href="profile.php?id='.$row['poster_id'].'">'.$row['nickname'].'</a></td>';
             echo "<td>".$row['rarity']."</td>";
             echo "<td>".$row['time']."</td>";
             echo "<td>".$row['password']."</td><td>";

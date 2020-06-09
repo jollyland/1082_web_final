@@ -25,7 +25,8 @@ if(isset($_POST['password']) && ($_POST['password'])!=null){
         $pwd = $row['password'];
 
         echo "<tr>";
-        echo "<td>".$name."(".$userid.")</td>";
+        echo '<td><a href="profile.php?id='.$userid.'">'.$name.'</a></td>';
+        
 
         if($row['p_id']==$_SESSION['id']){
             echo "<td>".$pwd."</td>";

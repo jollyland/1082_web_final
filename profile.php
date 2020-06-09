@@ -17,9 +17,9 @@ include("PDOInc.php")
 <div class="header">        
 <?php
     echo '<a class="header_button" href="index.php">回到首頁</a>';
+    if(isset($_SESSION['id'])){
     echo '<a class="header_button" href="update_profile.php?id='.$_SESSION['id'].'">編輯資料</a>';
-    
-    $id = $_SESSION['id'];
+    }
 ?>
 </div>
 <div class="profile_body">
@@ -31,8 +31,8 @@ include("PDOInc.php")
         </tr>
    
         <tr>
-            <?php
-    $id = $_SESSION['id'];
+    <?php
+    $id = $_GET['id'];
     $sql = "SELECT * FROM user_data WHERE id = '$id'";
     $sth = $dbh->query($sql);
     if ($row = $sth->fetch(PDO::FETCH_ASSOC)){  
@@ -52,7 +52,7 @@ include("PDOInc.php")
     <div class="profile_card">
     <h3>公開的聯盟卡</h3>
     <?php
-    $id = $_SESSION['id'];
+    $id = $_GET['id'];
     $sql = "SELECT * FROM pic_index WHERE owner = '$id' AND type = 0 ";
     $sth = $dbh->query($sql);
     if ($row = $sth->fetch(PDO::FETCH_ASSOC)){
@@ -72,7 +72,7 @@ include("PDOInc.php")
    
         
     <?php
-    $id = $_SESSION['id'];
+    $id = $_GET['id'];
     $sql = "SELECT * FROM pic_index WHERE owner = '$id' AND type = 1 ";
     $sth = $dbh->query($sql);
     while ($row = $sth->fetch(PDO::FETCH_ASSOC)){
@@ -100,7 +100,7 @@ include("PDOInc.php")
     </tr>
 <?php
 
-    $id = $_SESSION['id'];
+    $id = $_GET['id'];
     $s_list = "SELECT * FROM board_group_battle WHERE poster_id = '$id' ORDER BY time DESC";
     $sth = $dbh->query($s_list);
     $row = $sth->fetch(PDO::FETCH_ASSOC);
@@ -133,7 +133,7 @@ include("PDOInc.php")
 
     <?php
 
-    $id = $_SESSION['id'];
+    $id = $_GET['id'];
     $s_list = "SELECT * FROM board_trade_give WHERE poster_id = '$id' ORDER BY time DESC";
     $sth = $dbh->query($s_list);
 
@@ -160,7 +160,7 @@ include("PDOInc.php")
                   </tr>
     <?php
 
-    $id = $_SESSION['id'];
+    $id = $_GET['id'];
     $s_list = "SELECT * FROM board_trade_seek WHERE poster_id = '$id' ORDER BY id DESC";
     $sth = $dbh->query($s_list);
 

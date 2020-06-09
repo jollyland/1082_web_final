@@ -69,7 +69,7 @@ if(isset($_POST['title']) && isset($_POST['pokemon']) && isset($_POST['offer']) 
         $sth = $dbh->query($sql);
         while($row = $sth->fetch(PDO::FETCH_ASSOC)){
             echo '<td><a href="trade_seek_res.php?id='.$row['id'].'">'.htmlspecialchars($row['title']).'</a></td>';
-            echo "<td>".$row['poster_id']."(".$row['nickname'].")</td>";
+            echo '<td><a href="profile.php?id='.$row['poster_id'].'">'.$row['nickname'].'</a></td>';
             echo "<td>".$row['pokemon']."</td>";
             echo "<td>".$row['offer']."</td><td>";
             if($row['poster_id']==$_SESSION['id']){
