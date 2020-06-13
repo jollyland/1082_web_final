@@ -20,15 +20,15 @@ if( isset($_FILES["pic"]["name"]) && isset($_POST['pic_type'])){
 
 	switch($_POST['pic_type']){
 		case 0:
-    	$sql = "SELECT * FROM pic_index WHERE owner = '$id' and type = 0 ";
-		$sth = $dbh->query($sql);
+    	$sth = $dbh->prepare("SELECT * FROM pic_index WHERE owner = ? and type = 0 ");
+		$sth->execute(array($id));
 
     	if($row = $sth->fetch(PDO::FETCH_ASSOC)){
     		if(file_exists( $filePath.$row['server_path'] )){
         		unlink($filePath.$row['server_path']);//將檔案刪除
         	}
-    		$ds = " DELETE FROM pic_index WHERE owner ='$id' AND type = 0 ";
-    		$delete = $dbh->query($ds);
+    		$delete = $dbh->prepare(" DELETE FROM pic_index WHERE owner = ? AND type = 0 ");
+    		$delete->execute(array($id));
 			$ins = 'INSERT INTO pic_index (origin_name, server_path, owner, type, code) VALUES (:name, :filepath, :id, :pictype, :ccode) '; 
     		$insert = $dbh->prepare($ins);
 			$insert->bindParam(':name',$filename, PDO::PARAM_STR);
@@ -63,8 +63,8 @@ if( isset($_FILES["pic"]["name"]) && isset($_POST['pic_type'])){
 		break;
 		
 		case 1:
-			$sql = "SELECT *  FROM pic_index WHERE owner = '$id' and type = 1 ";
-			$sth = $dbh->query($sql);
+			$sth = $dbh->prepare("SELECT *  FROM pic_index WHERE owner = ? and type = 1 ");
+			$sth->execute(array($id));
 			$rcount = $sth->rowCount();
 
 			if($rcount < 5){ //沒有超過5對ㄉ時候
@@ -78,16 +78,16 @@ if( isset($_FILES["pic"]["name"]) && isset($_POST['pic_type'])){
 				$insert->execute();
 			}
 			else{
-				$s = 'SELECT server_path, MIN(uptime) FROM pic_index WHERE type =1 ';
-				$sth = $dbh->query($s);
+				$sth = $dbh->prepare('SELECT server_path, MIN(uptime) FROM pic_index WHERE type = 1 and owner=?');
+				$sth->execute(array($id));
     			if($row = $sth->fetch(PDO::FETCH_ASSOC)){
 					if(file_exists( $filePath.$row['server_path'] )){
         				unlink($filePath.$row['server_path']);//將檔案刪除
       				}
 				}
 
-				$d = 'DELETE FROM pic_index WHERE uptime = (SELECT MIN(uptime) FROM pic_index WHERE type =1) ';
-				$delete = $dbh->query($d);
+				$delete = $dbh->prepare('DELETE FROM pic_index WHERE uptime = (SELECT MIN(uptime) FROM pic_index WHERE type =1 and owner = ? ) ');
+				$delete->execute(array($id));
 				$ins = 'INSERT INTO pic_index (origin_name, server_path, owner, type, code) VALUES (:name, :filepath, :id, :pictype, :tcode) '; 
     			$insert = $dbh->prepare($ins);
 				$insert->bindParam(':name',$filename, PDO::PARAM_STR);

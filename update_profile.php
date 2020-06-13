@@ -26,9 +26,12 @@ if (!isset($_SESSION['id']) || $_GET['id'] != $_SESSION['id']){
 <body>
 <div class="header">
     <a class="header_button" href="index.php" >回首頁</a>
-    <a class="header_button" href="profile.php?id='.$_SESSION['id'].'">回到個人頁面</a></p>
+    <?php
+        echo '<a class="header_button" href="profile.php?id='.$_SESSION['id'].'">'."回到個人資料".'</a>';
+    ?>
 </div>
 <div class="up_body">
+
 <div class="up_carte">
     <h4>修改公開資料</h4>
     <form name="change_name" method = "post" action ="update_name.php">
@@ -65,6 +68,8 @@ if (!isset($_SESSION['id']) || $_GET['id'] != $_SESSION['id']){
     </form>
 
 </div>
+<br>
+
 <div class="up_card">
     <h4>上傳聯盟卡</h4>
 <form action="upload_pic.php" method="post" enctype="multipart/form-data">

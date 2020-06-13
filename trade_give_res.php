@@ -27,13 +27,13 @@ if(isset($_POST['password']) && ($_POST['password'])!=null){
         echo "<tr>";
         echo '<td><a href="profile.php?id='.$userid.'">'.$name.'</a></td>';
         
-        if(isset($_SESSION['id']){
-        if($row['p_id']==$_SESSION['id']){
-            echo "<td>".$pwd."</td>";
-        }
-        else{
+        if(isset($_SESSION['id'])){
+            if($row['p_id']==$_SESSION['id']){
+                echo "<td>".$pwd."</td>";
+            }
+            else{
             echo "<td>僅樓主可見</td>";            
-        }
+            }
         }
         echo "</tr>";
     } 
@@ -55,7 +55,6 @@ if(isset($_POST['password']) && ($_POST['password'])!=null){
 
     }
     else{
-        echo "<br>";
         echo "<a href=\"login.php\" class=\"header_button\">登入</a>";
         echo "<a href=\"signup.php\" class=\"header_button\">沒有帳號，註冊</a>";
     }

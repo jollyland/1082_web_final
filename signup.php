@@ -51,9 +51,9 @@ if( isset($_POST['id']) && isset($_POST['pwd']) && isset($_POST['nickname']) && 
 	else $public = 0;
 
 	
-	$sql = "SELECT id FROM user_data WHERE id = '$id' "; 
-	$check = $dbh->query($sql);
-	$row = $check->fetch(PDO::FETCH_ASSOC);
+	$sql = $dbh->prepare("SELECT id FROM user_data WHERE id = ? ");
+	$sql->execute(array($id));
+	$row = $sql->fetch(PDO::FETCH_ASSOC);
 	if (!$row){
 		
 		$q="INSERT INTO user_data (id,password,nickname,fc,fc_show) VALUES (:name,:pwd,:nn,:fc,:show)";//向資料庫插入表單傳來的值的sql

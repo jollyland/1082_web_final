@@ -19,6 +19,7 @@ include("PDOInc.php")
     echo '<a class="header_button" href="index.php">回到首頁</a>';
     if(isset($_SESSION['id'])){
     echo '<a class="header_button" href="update_profile.php?id='.$_SESSION['id'].'">編輯資料</a>';
+
     }
 ?>
 </div>
@@ -32,9 +33,10 @@ include("PDOInc.php")
    
         <tr>
     <?php
+
     $id = $_GET['id'];
-    $sql = "SELECT * FROM user_data WHERE id = '$id'";
-    $sth = $dbh->query($sql);
+    $sth = $dbh->prepare("SELECT * FROM user_data WHERE id = ?");
+    $sth->execute(array($id));
     if ($row = $sth->fetch(PDO::FETCH_ASSOC)){  
         echo "<td>".$row['nickname']."</td>";
         if($row['fc_show'] == 1){
@@ -43,7 +45,9 @@ include("PDOInc.php")
         else
             echo "<td>未公開</td>";
     }
-            ?>
+    
+
+    ?>
         </tr>
 </table>
 </div>
@@ -53,8 +57,8 @@ include("PDOInc.php")
     <h3>公開的聯盟卡</h3>
     <?php
     $id = $_GET['id'];
-    $sql = "SELECT * FROM pic_index WHERE owner = '$id' AND type = 0 ";
-    $sth = $dbh->query($sql);
+    $sth = $dbh->prepare("SELECT * FROM pic_index WHERE owner = ? AND type = 0 ");
+    $sth->execute(array($id));
     if ($row = $sth->fetch(PDO::FETCH_ASSOC)){
         echo "<img class=\"league_card\" src='./uploadFile/".$row['server_path']."'>" ;
         echo "<table><tr><th>聯盟卡密碼</th></tr>";
@@ -73,8 +77,8 @@ include("PDOInc.php")
         
     <?php
     $id = $_GET['id'];
-    $sql = "SELECT * FROM pic_index WHERE owner = '$id' AND type = 1 ";
-    $sth = $dbh->query($sql);
+    $sth = $dbh->prepare("SELECT * FROM pic_index WHERE owner = ? AND type = 1 ");
+    $sth->execute(array($id));
     while ($row = $sth->fetch(PDO::FETCH_ASSOC)){
         echo "<tr>";
         echo "<td><img class=\"team_pic\" src='./uploadFile/".$row['server_path']."'></td>" ;
@@ -101,8 +105,8 @@ include("PDOInc.php")
 <?php
 
     $id = $_GET['id'];
-    $s_list = "SELECT * FROM board_group_battle WHERE poster_id = '$id' ORDER BY time DESC";
-    $sth = $dbh->query($s_list);
+    $sth = $dbh->prepare("SELECT * FROM board_group_battle WHERE poster_id = ? ORDER BY time DESC");
+    $sth->execute(array($id));
     $row = $sth->fetch(PDO::FETCH_ASSOC);
 
     while($row = $sth->fetch(PDO::FETCH_ASSOC)){      
@@ -134,16 +138,12 @@ include("PDOInc.php")
     <?php
 
     $id = $_GET['id'];
-    $s_list = "SELECT * FROM board_trade_give WHERE poster_id = '$id' ORDER BY time DESC";
-    $sth = $dbh->query($s_list);
-
-    while($row = $sth->fetch(PDO::FETCH_ASSOC)){
-            
+    $sth = $dbh->prepare("SELECT * FROM board_trade_give WHERE poster_id = ? ORDER BY time DESC");
+    $sth->execute(array($id));
+    while($row = $sth->fetch(PDO::FETCH_ASSOC)){           
             echo '<td><a href="trade_give_res.php?id='.$row['id'].'">'.htmlspecialchars($row['title']).'</a></td>';
             echo "<td>".$row['pokemon']."</td>";
             echo "<td>".$row['time']."</td><tr>";
-        
-            //好像也是要有沒有結束&貼文連結
     }
 
     ?>
@@ -154,15 +154,15 @@ include("PDOInc.php")
         <h3>發表過的徵求</h3>
                 <table>
                   <tr>
-                       <th>標    題</th>
-                       <th>寶 可 夢</th>
+                       <th>標題</th>
+                       <th>寶可夢</th>
                        <th>可以提供</th>
                   </tr>
     <?php
 
     $id = $_GET['id'];
-    $s_list = "SELECT * FROM board_trade_seek WHERE poster_id = '$id' ORDER BY id DESC";
-    $sth = $dbh->query($s_list);
+    $sth = $dbh->prepare("SELECT * FROM board_trade_seek WHERE poster_id = ? ORDER BY id DESC");
+    $sth->execute(array($id));
 
     while( $row = $sth->fetch(PDO::FETCH_ASSOC) ){
             echo '<td><a href="trade_seek_res.php?id='.$row['id'].'">'.htmlspecialchars($row['title']).'</a></td>';

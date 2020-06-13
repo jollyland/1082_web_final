@@ -7,8 +7,8 @@ include("PDOInc.php")
 if(isset($_SESSION['id'])){
 	$id = $_SESSION['id'];
 
-	$sql = "SELECT * FROM user_data WHERE id = '$id'";
-	$st = $dbh->query($sql);
+	$st = $dbh->prepare("SELECT * FROM user_data WHERE id = ? ");
+    $st->execute(array($id));
 	$row = $st->fetch(PDO::FETCH_ASSOC);
 	$pwd = $row['password'];
 
@@ -28,8 +28,8 @@ if(isset($_SESSION['id'])){
     			if( $_POST['newpwd'] == $_POST['confirmpwd'])
     			{
     				$new = md5($_POST['newpwd']);
-    				$up = $dbh->prepare("UPDATE user SET password = ? WHERE id = '$id' ");
-    				$up->execute( array($new) );
+    				$up = $dbh->prepare("UPDATE user SET password = ? WHERE id = ? ");
+    				$up->execute( array($new,$id) );
 
     				echo "修改成功，請重新登入";
     				echo "

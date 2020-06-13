@@ -35,13 +35,15 @@ include("PDOInc.php");
 			 	$_SESSION['id'] = $row['id'];
 			 	$_SESSION['nickname'] = $row['nickname'];
 			 	echo "登入成功";
-		 	}
-		 
-		echo "
+		 	echo "
 			<script>
 			setTimeout(function(){window.location.href='index.php';},2000);		
 			</script>";
-				
+		
+		 	}
+		else{
+			echo "登入失敗！請再次檢查帳號密碼！";
+		}		
 	}
 	else{
 		echo "error: wrong user id or pwd";
@@ -53,4 +55,3 @@ include("PDOInc.php");
 </body></html>
 
 
-<!--看ㄉ到留言ㄉ地方>

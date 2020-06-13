@@ -33,7 +33,7 @@ if(isset($_POST['password']) && isset($_POST['want']) && isset($_POST['time']) &
 
         echo "<td>".$want."</td>";
 
-        if(isset($_SESSION['id']){
+        if(isset($_SESSION['id'])){
         if($row['p_id']==$_SESSION['id']){
             echo "<td>".$time."</td>";
             echo "<td>".$pwd."</td>";
@@ -62,11 +62,10 @@ if(isset($_POST['password']) && isset($_POST['want']) && isset($_POST['time']) &
 
     if(isset($_SESSION['id'])){
         echo "<a href=\"logout.php\" class=\"header_button\">登出</a>";
-        echo '<a class="header_button" href="profile.php?id='.$_SESSION['id'].'">'.$_SESSION['id'].'</a></p>';
+        echo '<a class="header_button" href="profile.php?id='.$_SESSION['id'].'">'.$_SESSION['id'].'</a>';
 
     }
     else{
-        echo "<br>";
         echo "<a href=\"login.php\" class=\"header_button\">登入</a>";
         echo "<a href=\"signup.php\" class=\"header_button\">沒有帳號，註冊</a>";
     }

@@ -33,7 +33,6 @@ if(isset($_POST['title']) && isset($_POST['pokemon']) && isset($_POST['time']) &
 
     }
     else{
-        echo "<br>";
         echo "<a href=\"login.php\" class=\"header_button\">登入</a>";
         echo "<a href=\"signup.php\" class=\"header_button\">沒有帳號，註冊</a>";
     }
