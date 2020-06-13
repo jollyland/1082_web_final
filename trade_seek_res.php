@@ -33,6 +33,7 @@ if(isset($_POST['password']) && isset($_POST['want']) && isset($_POST['time']) &
 
         echo "<td>".$want."</td>";
 
+        if(isset($_SESSION['id']){
         if($row['p_id']==$_SESSION['id']){
             echo "<td>".$time."</td>";
             echo "<td>".$pwd."</td>";
@@ -40,6 +41,7 @@ if(isset($_POST['password']) && isset($_POST['want']) && isset($_POST['time']) &
         else{
             echo "<td>僅樓主可見</td>";
             echo "<td>僅樓主可見</td>";
+        }
         }
         
         echo "</tr>";
@@ -50,7 +52,8 @@ if(isset($_POST['password']) && isset($_POST['want']) && isset($_POST['time']) &
 
 <html>
 <head>
-     <link rel="stylesheet" type="text/css" href="style.css">    
+     <link rel="stylesheet" type="text/css" href="style.css">
+     <title>回應</title>    
 </head>
 
 <div class="header">
